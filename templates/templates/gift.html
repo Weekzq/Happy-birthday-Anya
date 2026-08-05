@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Твой подарок, Аня!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_gift.css') }}">
+</head>
+<body>
+
+    <div class="background-layer">
+        <div class="cakes-bg">
+            <span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span>
+            <span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span>
+            <span>🎂</span><span>🎂</span>
+        </div>
+    </div>
+
+    <div id="confetti-container"></div>
+
+    <div class="main-wrapper">
+
+        <header class="header">
+            <h1>🎁 Твой подарок, Аня! 🎁</h1>
+        </header>
+
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <div class="envelope-text">
+                        <p class="secret-message">🤫 Не так быстро!</p>
+                        <p class="secret-message-small">Свой подарок увидишь на дне рождения 🎉</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gift-decoration">
+            <p class="gift-text">🎈 Жди сюрприза! 🎈</p>
+            <p class="gift-subtext">Твой подарок уже готов и ждёт тебя</p>
+            <div class="gift-emoji">
+                <span>🎁</span><span>🎊</span><span>🎈</span><span>🎉</span><span>🎀</span>
+            </div>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="back-link">
+            <button class="btn back-btn">⬅ Назад к поздравлению</button>
+        </a>
+
+        <footer class="footer">
+            <p>От твоего одноклассника {{ classmate }} 👋</p>
+        </footer>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script_gift.js') }}"></script>
+</body>
+</html>
