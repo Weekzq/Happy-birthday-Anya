@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== ФОН С РАЗМЫТИЕМ ===== */
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: #ffb6c1;
+    filter: blur(6px);
+    transform: scale(1.1);
+}
+
+/* ===== ТОРТЫ НА ФОНЕ ===== */
+.cakes-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.cakes-bg span {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0.4;
+    user-select: none;
+    animation: floatCake 8s ease-in-out infinite;
+}
+
+.cakes-bg span:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; font-size: 120px; }
+.cakes-bg span:nth-child(2) { top: 15%; right: 8%; animation-delay: 0.7s; font-size: 80px; }
+.cakes-bg span:nth-child(3) { top: 40%; left: 2%; animation-delay: 1.4s; font-size: 100px; }
+.cakes-bg span:nth-child(4) { top: 60%; right: 3%; animation-delay: 0.3s; font-size: 130px; }
+.cakes-bg span:nth-child(5) { top: 80%; left: 8%; animation-delay: 1.8s; font-size: 90px; }
+.cakes-bg span:nth-child(6) { top: 10%; left: 50%; animation-delay: 2.2s; font-size: 70px; }
+.cakes-bg span:nth-child(7) { top: 50%; left: 45%; animation-delay: 0.9s; font-size: 140px; }
+.cakes-bg span:nth-child(8) { top: 85%; right: 15%; animation-delay: 1.2s; font-size: 85px; }
+.cakes-bg span:nth-child(9) { top: 30%; left: 80%; animation-delay: 2.7s; font-size: 75px; }
+.cakes-bg span:nth-child(10) { top: 70%; left: 25%; animation-delay: 1.6s; font-size: 110px; }
+.cakes-bg span:nth-child(11) { top: 90%; left: 50%; animation-delay: 0.5s; font-size: 95px; }
+.cakes-bg span:nth-child(12) { top: 45%; right: 25%; animation-delay: 3s; font-size: 65px; }
+
+@keyframes floatCake {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translateY(-25px) rotate(5deg) scale(1.05);
+    }
+}
+
+/* ===== КОНФЕТТИ ===== */
+#confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px)) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ===== ОСНОВНОЙ БЛОК ===== */
+.main-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== ШАПКА ===== */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 3em;
+    color: #8b0040;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+/* ===== КОНВЕРТ ===== */
+.envelope-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 40px 0;
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+    width: 400px;
+    height: 280px;
+    background: #fff5f5;
+    border-radius: 8px;
+    box-shadow: 0 15px 50px rgba(139, 0, 64, 0.2);
+    animation: envelopeFloat 3s ease-in-out infinite;
+    border: 2px solid #ffb6c1;
+}
+
+@keyframes envelopeFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+}
+
+/* Клапан конверта (верхняя часть) */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #ffe8ec;
+    border-bottom: 3px dashed #ffb6c1;
+    border-radius: 8px 8px 0 0;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    z-index: 2;
+    animation: flapOpen 4s ease-in-out infinite;
+}
+
+@keyframes flapOpen {
+    0%, 100% {
+        clip-path: polygon(0 0, 50% 60%, 100% 0);
+    }
+    50% {
+        clip-path: polygon(0 0, 50% 100%, 100% 0);
+    }
+}
+
+/* Тело конверта */
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: #fff5f5;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1;
+}
+
+.envelope-text {
+    text-align: center;
+}
+
+.secret-message {
+    font-size: 28px;
+    font-weight: bold;
+    color: #8b0040;
+    margin-bottom: 10px;
+}
+
+.secret-message-small {
+    font-size: 18px;
+    color: #6b0030;
+    font-weight: 500;
+}
+
+/* ===== ОФОРМЛЕНИЕ ПОД КОНВЕРТОМ ===== */
+.gift-decoration {
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+.gift-text {
+    font-size: 32px;
+    font-weight: bold;
+    color: #8b0040;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.gift-subtext {
+    font-size: 18px;
+    color: #6b0030;
+    margin-top: 8px;
+}
+
+.gift-emoji {
+    margin-top: 15px;
+    font-size: 40px;
+    letter-spacing: 15px;
+    animation: emojiBounce 2s ease-in-out infinite;
+}
+
+@keyframes emojiBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+    background: linear-gradient(135deg, #ff6b8a, #ff8fa3);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 107, 138, 0.4);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 107, 138, 0.6);
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+}
+
+.back-btn:hover {
+    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.6);
+}
+
+.back-link {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* ===== ФУТЕР ===== */
+.footer {
+    text-align: center;
+    padding: 30px 0 10px 0;
+    color: #8b0040;
+    font-weight: bold;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .envelope {
+        width: 300px;
+        height: 220px;
+    }
+
+    .secret-message {
+        font-size: 22px;
+    }
+
+    .secret-message-small {
+        font-size: 16px;
+    }
+
+    .gift-text {
+        font-size: 24px;
+    }
+
+    .gift-emoji {
+        font-size: 30px;
+        letter-spacing: 10px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 17px;
+    }
+
+    .cakes-bg span {
+        font-size: 50px !important;
+    }
+}
