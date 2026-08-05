@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения, Аня!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="background-layer">
+        <div class="cakes-bg">
+            <span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span>
+            <span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span>
+            <span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span><span>🎂</span>
+        </div>
+    </div>
+
+    <div id="confetti-container"></div>
+
+    <div class="main-wrapper">
+
+        <header class="header">
+            <h1>🎂 С Днём Рождения, Аня! 🎂</h1>
+            <p class="subtitle">Сегодня тебе {{ age }} лет! 🥳</p>
+        </header>
+
+        <div class="card main-card">
+            <div class="cake">🎂</div>
+            
+            <div class="age-block">
+                <span class="age">{{ age }}</span>
+                <span class="age-label">лет</span>
+            </div>
+            
+            <div class="main-text">
+                <p>🎉 Аня, с днём рождения! 🎉</p>
+                <p>Ты — отличная одноклассница!</p>
+                <p>Желаю тебе весёлых приключений,</p>
+                <p>хороших оценок и классного настроения! 💪</p>
+            </div>
+
+            <button id="wishBtn" class="btn">🎁 Ещё пожелание</button>
+            <div id="wishResult" class="wish-result"></div>
+
+            <a href="{{ url_for('gift') }}" class="gift-link">
+                <button class="btn gift-btn">🎁 Твой подарок</button>
+            </a>
+        </div>
+
+        <div class="final-block">
+            <p>🎊 С ДНЁМ РОЖДЕНИЯ, АНЯ! 🎊</p>
+            <p>{{ year }}</p>
+        </div>
+
+        <footer class="footer">
+            <p>Твой одноклассник {{ classmate }} 👍</p>
+        </footer>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
